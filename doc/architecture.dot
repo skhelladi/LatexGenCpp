@@ -1,0 +1,59 @@
+digraph LatexGenArchitecture {
+    rankdir=BT;  // Bottom to top direction
+    node [shape=box, style="filled", fillcolor=lightblue, fontname="Arial", margin="0.3,0.1"];
+    edge [arrowhead=empty, dir=back];  // Inheritance arrows
+
+    // Document hierarchy
+    Document [label="{Document|+ generatePreamble()\l+ generateDocument()\l+ generate()\l+ saveToFile()\l}", shape=record, fillcolor=lightyellow];
+    Article [label="{Article|+ setAbstract()\l+ addKeyword()\l+ includeIndex()\l+ generatePreamble()\l+ generateDocument()\l}", shape=record];
+    Report [label="{Report|+ setAbstract()\l+ includeTableOfContents()\l+ includeListOfFigures()\l+ includeListOfTables()\l+ generatePreamble()\l+ generateDocument()\l}", shape=record];
+    Book [label="{Book|+ setAbstract()\l+ includeTableOfContents()\l+ includeListOfFigures()\l+ includeListOfTables()\l+ includeIndex()\l+ addPart()\l+ addChapterToPart()\l+ addAppendix()\l+ generatePreamble()\l+ generateDocument()\l}", shape=record];
+    Presentation [label="{Presentation|+ setInstitute()\l+ setSubtitle()\l+ setTheme()\l+ setColorTheme()\l+ setNavigation()\l+ setTransition()\l+ addSlide()\l+ addSection()\l+ addSubsection()\l+ addSubsubsection()\l+ generatePreamble()\l+ generateDocument()\l}", shape=record];
+    
+    // Environment hierarchy
+    Environment [label="{Environment|+ begin()\l+ end()\l+ generate()\l}", shape=record, fillcolor=lightyellow];
+    Table [label="{Table|+ setCaption()\l+ setLabel()\l+ addRow()\l+ generate()\l}", shape=record];
+    Figure [label="{Figure|+ setCaption()\l+ setLabel()\l+ setWidth()\l+ generate()\l}", shape=record];
+    Equation [label="{Equation|+ setContent()\l+ setLabel()\l+ generate()\l}", shape=record];
+    List [label="{List|+ addItem()\l+ generate()\l}", shape=record];
+    Algorithm [label="{Algorithm|+ setCaption()\l+ setLabel()\l+ addLine()\l+ addComment()\l+ addForLoop()\l+ addWhileLoop()\l+ addIf()\l+ addElse()\l+ addElseIf()\l+ addEnd()\l+ addReturn()\l+ addFunction()\l+ generate()\l}", shape=record];
+    TheoremEnvironment [label="{TheoremEnvironment|+ setContent()\l+ setTitle()\l+ generate()\l}", shape=record];
+    
+    // Section class
+    Section [label="{Section|+ addContent()\l+ generate()\l}", shape=record, fillcolor=lightgreen];
+    
+    // Bibliography classes
+    Bibliography [label="{Bibliography|+ setBibFile()\l+ setStyle()\l+ setCustomStyle()\l+ addEntry()\l+ getPreambleConfig()\l+ getIncludeCommands()\l+ generateBibFile()\l}", shape=record, fillcolor=lightpink];
+    BibEntry [label="{BibEntry|+ addField()\l+ setType()\l+ generate()\l}", shape=record, fillcolor=lightpink];
+    
+    // DocumentTemplate class
+    DocumentTemplate [label="{DocumentTemplate|+ addPackage()\l+ addPreambleContent()\l+ setGeometry()\l+ setHeaderFooterStyle()\l+ setHeader()\l+ setFooter()\l+ applyTo()\l}", shape=record, fillcolor=lightgrey];
+
+    // Inheritance relationships
+    Document -> Article [dir=back];
+    Document -> Report [dir=back];
+    Document -> Book [dir=back];
+    Document -> Presentation [dir=back];
+    Environment -> Table [dir=back];
+    Environment -> Figure [dir=back];
+    Environment -> Equation [dir=back];
+    Environment -> List [dir=back];
+    Environment -> Algorithm [dir=back];
+    Environment -> TheoremEnvironment [dir=back];
+    
+    // Composition relationships
+    edge [arrowhead=diamond, dir=back, style=dashed];
+    Document -> Section [label="contains"];
+    Document -> Environment [label="contains"];
+    Document -> Bibliography [label="uses"];
+    Bibliography -> BibEntry [label="contains"];
+    
+    // Usage relationships
+    edge [arrowhead=open, dir=forward, style=dotted];
+    DocumentTemplate -> Document [label="applies to"];
+    
+    // Label for the diagram
+    label = "Architecture of the LaTeXGenC++ Library";
+    labelloc = "t";
+    fontsize = 20;
+}
