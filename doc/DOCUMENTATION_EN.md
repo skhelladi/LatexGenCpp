@@ -35,7 +35,6 @@
 11. [API Reference](#api-reference)
 12. [Troubleshooting](#troubleshooting)
 13. [Document Compilation](#document-compilation)
-14. [Conclusion](#conclusion)
 
 ## Introduction
 
@@ -630,8 +629,5 @@ pdflatex document.tex
 pdflatex document.tex
 ```
 
-## Conclusion
-
-LatexGenC++ offers a complete solution for programmatically generating LaTeX documents in C++. Thanks to its object-oriented architecture and multiple features, the library allows you to create a wide variety of documents with minimal effort.
 
 If you have additional questions or wish to contribute to the development of this library, feel free to consult the project repository or contact the author.
