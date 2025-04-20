@@ -29,7 +29,7 @@ LatexGenC++ is a comprehensive C++ library that allows programmatic generation o
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/LatexGenCpp.git
+git clone https://github.com/skhelladi/LatexGenCpp.git
 
 # Create a build directory
 cd LatexGenCpp
