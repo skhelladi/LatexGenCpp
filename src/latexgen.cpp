@@ -917,6 +917,12 @@ namespace LatexGen
                << m_abstract << "\n\\end{abstract}\n\n";
         }
 
+        // Table of contents if requested
+        if (m_includeTableOfContents)
+        {
+            ss << "\\tableofcontents\n\\clearpage\n\n";
+        }
+
         // Add raw content
         for (const auto &content : m_rawContent)
         {

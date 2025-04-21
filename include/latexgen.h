@@ -1118,6 +1118,15 @@ namespace LatexGen
             }
         }
 
+        /**
+         * @brief Enable or disable the table of contents in the document
+         * @param include If true, enable the table of contents
+         */
+        void includeTableOfContents(bool include = true)
+        {
+            m_includeTableOfContents = include;
+        }
+
         std::string generatePreamble() const override;
 
         void createBibFile() const;
@@ -1131,6 +1140,7 @@ namespace LatexGen
         std::vector<std::string> m_customPreamble; // To store custom preamble content
         std::vector<std::string> m_keywords;       // To store keywords
         bool m_includeIndex = false;               // To enable/disable the index
+        bool m_includeTableOfContents = false;     // To enable/disable the table of contents
     };
 
     /**
