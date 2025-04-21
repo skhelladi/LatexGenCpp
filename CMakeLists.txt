@@ -4,6 +4,7 @@ project(LatexGenCpp VERSION 0.1.0 LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
@@ -25,6 +26,23 @@ target_include_directories(LatexGenCpp
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
 )
+
+
+# Add compiler flags for optimization and warnings
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(${PROJECT_NAME} PRIVATE
+        -O3
+        -Wall
+        # -Wextra
+        # -Wpedantic
+        # -Wno-unused-parameter
+    )
+elseif(MSVC)
+    target_compile_options(${PROJECT_NAME} PRIVATE
+        /O2
+        /W4
+    )
+endif()
 
 
 # Création de l'exemple multilingue

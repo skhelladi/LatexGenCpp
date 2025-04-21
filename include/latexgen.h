@@ -1270,7 +1270,7 @@ namespace LatexGen
         std::vector<std::string> m_parts;
         std::map<size_t, std::vector<Section>> m_partChapters;
         std::vector<Section> m_appendices; // Add a vector to store appendices
-        int m_currentPart = -1;
+        size_t m_currentPart = -1;
     };
 
     /**

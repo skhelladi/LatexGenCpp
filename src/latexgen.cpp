@@ -1462,7 +1462,7 @@ namespace LatexGen
         for (const auto &section : m_sections)
         {
             // Extract the level and title of the section
-            Section::Level level = section.Level::SECTION; // Default level
+            // Section::Level level = section.Level::SECTION; // Default level
             std::string title = "Section";
             std::string sectionContent = section.generate();
 
